@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace ConceptualMath.Numbers
+namespace ConceptualMath.Numbers.Ordering
 {
-    public abstract class Ordered<TNumber> : IOrdered<TNumber>
-        where TNumber : INumber
+    public abstract class Ordered<TNumber>
+        where TNumber : IForwardOrdered<TNumber>, INumber
     {
         private readonly TNumber _value;
 
@@ -13,9 +13,9 @@ namespace ConceptualMath.Numbers
         {
             _value = value;
         }
-        public abstract IOrdered<TNumber> First { get; }
+        public abstract TNumber First { get; }
 
-        public abstract IOrdered<TNumber> Next { get; }
+        public abstract TNumber Next { get; }
 
         public TNumber Current => _value;
 

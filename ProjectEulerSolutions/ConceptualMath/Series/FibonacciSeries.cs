@@ -5,7 +5,7 @@ using System.Text;
 
 namespace ConceptualMath.Series
 {
-    public class NaturalNumbers : Series<NaturalNumber>
+    public class FibonacciSeries : Series<FibonacciNumber>
     {
 
     }

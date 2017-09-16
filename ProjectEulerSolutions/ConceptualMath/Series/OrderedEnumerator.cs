@@ -1,4 +1,5 @@
 ﻿using ConceptualMath.Numbers;
+using ConceptualMath.Numbers.Ordering;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -7,13 +8,14 @@ using System.Text;
 namespace ConceptualMath.Series
 {
     public class OrderedEnumerator<TNumber> : IEnumerator<TNumber>
-        where TNumber : IOrdered<TNumber>, INumber
+        where TNumber : IForwardOrdered<TNumber>, INumber
     {
-        private IOrdered<TNumber> _current;
+        private TNumber _current;
+        private readonly TNumber _initial;
 
-        public OrderedEnumerator(TNumber current)
+        public OrderedEnumerator(TNumber initial)
         {
-            _current = current;
+            _initial = initial;
         }
         public TNumber Current => _current.Current;
 
@@ -23,7 +25,8 @@ namespace ConceptualMath.Series
         {
             try
             {
-                _current = _current.Next;
+                _current = (_current == null) ? _initial : _current.Next;
+
                 return true;
             }
             catch(Exception)
