@@ -28,7 +28,8 @@ namespace ProjectEulerSolutions
         {
             
             var divisors = Sequences.NumbersBetween(1, 11)
-                .WherePrime();
+                //.WherePrime()
+                .ToList();
             var value = new NaturalNumbers()
                 .Skip(1) //skip 0
                 .Select(natural => natural.Value)
@@ -38,16 +39,17 @@ namespace ProjectEulerSolutions
         }
 
         [TestMethod]
-        public void SmallestNumberThatCanBeDividedByNumbersUpTo20WithoutRemainder_IsSomething()
+        public void SmallestNumberThatCanBeDividedByNumbersUpTo20WithoutRemainder_Is232792560()
         {
 
-            var divisors = Sequences.NumbersBetween(1, 21);
+            var divisors = Sequences.NumbersBetween(1, 21)
+                .ToList();
             var value = new NaturalNumbers()
                 .Skip(1) //skip 0
                 .Select(natural => natural.Value)
                 .First(number => !divisors.Any(Conditional.HasRemainderWhenDividing(number)));
 
-            Assert.AreEqual(2520, value);
+            Assert.AreEqual(232792560, value);
         }
     }
 }

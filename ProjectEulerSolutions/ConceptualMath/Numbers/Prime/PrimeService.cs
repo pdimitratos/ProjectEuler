@@ -19,8 +19,8 @@ namespace ConceptualMath.Numbers.Prime
 
         public bool IsPrime(BigInteger toTest)
         {
-            if (toTest < LargestIdentifiedPrime
-                && !_confirmedPrimes.Contains(toTest)) return false;
+            if (_confirmedPrimes.Contains(toTest)) return true;
+            if (toTest < LargestIdentifiedPrime) return false;
 
             while (toTest > (LargestIdentifiedPrime * LargestIdentifiedPrime))
             {

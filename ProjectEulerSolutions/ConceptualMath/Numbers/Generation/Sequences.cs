@@ -31,7 +31,14 @@ namespace ConceptualMath.Numbers.Generation
         public static IEnumerable<BigInteger> WherePrime(this IEnumerable<BigInteger> sequence)
         {
             var primeService = new PrimeService();
-            return sequence.Where(value => primeService.IsPrime(value));
+            var enumerator = sequence.GetEnumerator();
+            while (enumerator.MoveNext())
+            {
+                if (primeService.IsPrime(enumerator.Current))
+                {
+                    yield return enumerator.Current;
+                }
+            }
         }
     }
 }
