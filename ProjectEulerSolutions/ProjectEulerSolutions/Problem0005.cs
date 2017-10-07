@@ -30,8 +30,8 @@ namespace ProjectEulerSolutions
             var divisors = Sequences.NumbersBetween(1, 11)
                 .ToList();
             var value = new NaturalNumbers()
+                .Values()
                 .Skip(1) //skip 0
-                .Select(natural => natural.Value)
                 .First(number => !divisors.Any(Conditional.HasRemainderWhenDividing(number)));
 
             Assert.AreEqual(2520, value);
@@ -44,8 +44,8 @@ namespace ProjectEulerSolutions
             var divisors = Sequences.NumbersBetween(1, 21)
                 .ToList();
             var value = new NaturalNumbers()
+                .Values()
                 .Skip(1) //skip 0
-                .Select(natural => natural.Value)
                 .First(number => !divisors.Any(Conditional.HasRemainderWhenDividing(number)));
 
             Assert.AreEqual(232792560, value);

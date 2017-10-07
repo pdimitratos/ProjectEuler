@@ -29,21 +29,21 @@ namespace ProjectEulerSolutions
             }.Sum();
 
             var actual = new FibonacciNumbers()
-                .TakeWhile(fib => fib.Value <= 89)
-                .Select(n => n.Value)
+                .Values()
+                .TakeWhile(fib => fib <= 89)
                 .Sum();
 
             Assert.AreEqual(expected, actual);
         }
 
         [TestMethod]
-        public void SumOfFibonacci_WithValuesLE4Million_Is4613732()
+        public void SumOfFibonacci_WithEvenValuesLE4Million_Is4613732()
         {
             var actual = new FibonacciNumbers()
-            .TakeWhile(fib => fib.Value <= 4000000)
-            .Select(n => n.Value)
-            .Where(v => v % 2 == 0)
-            .Sum();
+                .Values()
+                .TakeWhile(fib => fib <= 4000000)
+                .Where(v => v % 2 == 0)
+                .Sum();
 
             Assert.AreEqual(Answer, actual);
         }

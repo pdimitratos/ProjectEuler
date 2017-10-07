@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ConceptualMath.Numbers.Generation;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -28,5 +29,10 @@ namespace System.Collections.Generic
             }
             return toReturn;
         }
+
+        public static IEnumerator<TOut> Graph<TIn, TOut>(
+            this IEnumerator<TIn> inEnumerator,
+            Func<TIn, TOut> graph)
+            => new Range<TIn, TOut>(inEnumerator, graph);
     }
 }

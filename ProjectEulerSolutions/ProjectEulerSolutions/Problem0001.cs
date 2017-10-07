@@ -39,8 +39,8 @@ namespace ProjectEulerSolutions
             if (below < 1) throw new ArgumentException("must be 1 or greater", nameof(below));
 
             return new NaturalNumbers()
+                .Values()
                 .Take(below)
-                .Select(n => n.Value)
                 .Where(v => v % 3 == 0 || v % 5 == 0)
                 .Sum();
         }
