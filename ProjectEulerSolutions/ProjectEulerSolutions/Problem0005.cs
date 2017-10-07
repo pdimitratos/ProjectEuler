@@ -28,7 +28,6 @@ namespace ProjectEulerSolutions
         {
             
             var divisors = Sequences.NumbersBetween(1, 11)
-                //.WherePrime()
                 .ToList();
             var value = new NaturalNumbers()
                 .Skip(1) //skip 0
