@@ -37,12 +37,7 @@ namespace ProjectEulerSolutions
         public void DifferenceBetweenSquareOfTheSumAndSumOfTheSquaresOfTheFirst10NaturalNumbers_Is2640()
         {
             var n = 10;
-            var firstNNaturalNumbers = Sequences.NumbersBetween(1, n + 1).ToList();
-
-            var sumOfSquares = firstNNaturalNumbers.Map((number) => number * number).Sum();
-            var squareOfSum = BigInteger.Pow(firstNNaturalNumbers.Sum(), 2);
-
-            var value = squareOfSum - sumOfSquares;
+            var value = SumOfSquaresMinusSquareOfSumsOfFirstNNaturalNumbers(n);
 
             Assert.AreEqual(2640, value);
         }
@@ -51,14 +46,20 @@ namespace ProjectEulerSolutions
         public void DifferenceBetweenSquareOfTheSumAndSumOfTheSquaresOfTheFirst100NaturalNumbers_Is25164150()
         {
             var n = 100;
+            var value = SumOfSquaresMinusSquareOfSumsOfFirstNNaturalNumbers(n);
+
+            Assert.AreEqual(25164150, value);
+        }
+
+        private static BigInteger SumOfSquaresMinusSquareOfSumsOfFirstNNaturalNumbers(int n)
+        {
             var firstNNaturalNumbers = Sequences.NumbersBetween(1, n + 1).ToList();
 
             var sumOfSquares = firstNNaturalNumbers.Map((number) => number * number).Sum();
             var squareOfSum = BigInteger.Pow(firstNNaturalNumbers.Sum(), 2);
 
             var value = squareOfSum - sumOfSquares;
-
-            Assert.AreEqual(25164150, value);
+            return value;
         }
     }
 }
