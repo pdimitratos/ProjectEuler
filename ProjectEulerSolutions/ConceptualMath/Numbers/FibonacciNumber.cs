@@ -1,6 +1,7 @@
 ﻿using ConceptualMath.Numbers.Ordering;
 using System;
 using System.Collections.Generic;
+using System.Numerics;
 using System.Text;
 
 namespace ConceptualMath.Numbers
@@ -8,7 +9,7 @@ namespace ConceptualMath.Numbers
     public class FibonacciNumber : IBidirectionallyOrdered<FibonacciNumber>, INumber
     {
         public FibonacciNumber() : this(1, 1, null) { }
-        public FibonacciNumber(int value, int index, FibonacciNumber previous)
+        public FibonacciNumber(BigInteger value, BigInteger index, FibonacciNumber previous)
         {
             Value = value;
             Index = index;
@@ -43,7 +44,7 @@ namespace ConceptualMath.Numbers
             }
         }
 
-        public int Value { get; set; }
-        public int Index { get; set; }
+        public BigInteger Value { get; set; }
+        public BigInteger Index { get; set; }
     }
 }

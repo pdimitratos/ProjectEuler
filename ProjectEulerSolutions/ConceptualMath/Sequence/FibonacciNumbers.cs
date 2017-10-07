@@ -3,9 +3,10 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace ConceptualMath.Series
+namespace ConceptualMath.Sequence
 {
-    public interface ISeries<TNumber> : IEnumerable<TNumber>
+    public class FibonacciNumbers : Sequence<FibonacciNumber>
     {
+
     }
 }

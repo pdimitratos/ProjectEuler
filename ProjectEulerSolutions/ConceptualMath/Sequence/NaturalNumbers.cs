@@ -3,9 +3,9 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace ConceptualMath.Series
+namespace ConceptualMath.Sequence
 {
-    public class NaturalNumbers : Series<NaturalNumber>
+    public class NaturalNumbers : Sequence<NaturalNumber>
     {
 
     }

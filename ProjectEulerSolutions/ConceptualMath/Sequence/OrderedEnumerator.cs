@@ -5,7 +5,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 
-namespace ConceptualMath.Series
+namespace ConceptualMath.Sequence
 {
     public class OrderedEnumerator<TNumber> : IEnumerator<TNumber>
         where TNumber : IForwardOrdered<TNumber>, INumber

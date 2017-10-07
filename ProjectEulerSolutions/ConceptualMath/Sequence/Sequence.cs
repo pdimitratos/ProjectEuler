@@ -5,9 +5,9 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 
-namespace ConceptualMath.Series
+namespace ConceptualMath.Sequence
 {
-    public abstract class Series<TNumber> : ISeries<TNumber>
+    public abstract class Sequence<TNumber> : ISequence<TNumber>
         where TNumber : IForwardOrdered<TNumber>, INumber, new()
     {
         public IEnumerator<TNumber> GetEnumerator()

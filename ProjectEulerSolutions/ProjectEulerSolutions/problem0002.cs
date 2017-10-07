@@ -1,8 +1,9 @@
 ﻿using ConceptualMath.Numbers;
-using ConceptualMath.Series;
+using ConceptualMath.Sequence;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Linq;
+using System.Numerics;
 
 namespace ProjectEulerSolutions
 {
@@ -17,7 +18,8 @@ namespace ProjectEulerSolutions
         By considering the terms in the Fibonacci sequence whose values do not exceed four million, find the sum of the even-valued terms.
         */
 
-        private const int answer = 4613732;
+        private BigInteger Answer => 4613732;
+
         [TestMethod]
         public void SumOfFibonacci_WithValuesLE89_IsSomething()
         {
@@ -26,7 +28,7 @@ namespace ProjectEulerSolutions
                 1, 2, 3, 5, 8, 13, 21, 34, 55, 89
             }.Sum();
 
-            var actual = new FibonacciSeries()
+            var actual = new FibonacciNumbers()
                 .TakeWhile(fib => fib.Value <= 89)
                 .Select(n => n.Value)
                 .Sum();
@@ -37,13 +39,13 @@ namespace ProjectEulerSolutions
         [TestMethod]
         public void SumOfFibonacci_WithValuesLE4Million_Is4613732()
         {
-            var actual = new FibonacciSeries()
+            var actual = new FibonacciNumbers()
             .TakeWhile(fib => fib.Value <= 4000000)
             .Select(n => n.Value)
             .Where(v => v % 2 == 0)
             .Sum();
 
-            Assert.AreEqual(answer, actual);
+            Assert.AreEqual(Answer, actual);
         }
     }
 }

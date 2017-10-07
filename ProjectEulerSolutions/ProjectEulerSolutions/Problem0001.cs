@@ -1,7 +1,8 @@
-using ConceptualMath.Series;
+using ConceptualMath.Sequence;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Linq;
+using System.Numerics;
 
 namespace ProjectEulerSolutions
 {
@@ -14,13 +15,13 @@ namespace ProjectEulerSolutions
 
             Find the sum of all the multiples of 3 or 5 below 1000.
         */
-        private const int answer = 233168;
+        private BigInteger Answer => 233168;
 
 
         [TestMethod]
         public void SumOfNaturalNumbersBelow10ThatAreMultiplesOf3Or5_Is23()
         {
-            int value = SumOrNaturalNumbersThatAreMultiplesOf3Or5(10);
+            BigInteger value = SumOrNaturalNumbersThatAreMultiplesOf3Or5(10);
 
             Assert.AreEqual(23, value);
         }
@@ -28,12 +29,12 @@ namespace ProjectEulerSolutions
         [TestMethod]
         public void SumOfNaturalNumbersBelow1000ThatAreMultiplesOf3Or5_Is233168()
         {
-            int value = SumOrNaturalNumbersThatAreMultiplesOf3Or5(1000);
+            BigInteger value = SumOrNaturalNumbersThatAreMultiplesOf3Or5(1000);
 
-            Assert.AreEqual(answer, value);
+            Assert.AreEqual(Answer, value);
         }
 
-        private static int SumOrNaturalNumbersThatAreMultiplesOf3Or5(int below)
+        private static BigInteger SumOrNaturalNumbersThatAreMultiplesOf3Or5(int below)
         {
             if (below < 1) throw new ArgumentException("must be 1 or greater", nameof(below));
 

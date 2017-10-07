@@ -1,15 +1,16 @@
 ﻿using ConceptualMath.Numbers.Ordering;
 using System;
 using System.Collections.Generic;
+using System.Numerics;
 using System.Text;
 
 namespace ConceptualMath.Numbers
 {
     public class NaturalNumber : IForwardOrdered<NaturalNumber>, INumber
     {
-        private readonly int _value;
+        private readonly BigInteger _value;
         public NaturalNumber() : this(0) { }
-        public NaturalNumber(int value)
+        public NaturalNumber(BigInteger value)
         {
             _value = value;
         }
@@ -17,7 +18,7 @@ namespace ConceptualMath.Numbers
 
         public NaturalNumber Next => new NaturalNumber(_value + 1);
 
-        public int Value => _value;
+        public BigInteger Value => _value;
 
         public NaturalNumber Current => this;
     }
