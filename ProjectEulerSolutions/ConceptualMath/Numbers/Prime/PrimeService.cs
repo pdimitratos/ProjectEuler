@@ -1,22 +1,23 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
 using System.Text;
 
 namespace ConceptualMath.Numbers.Prime
 {
     public class PrimeService
     {
-        private List<long> _confirmedPrimes { get; } 
-            = new List<long>()
+        private List<BigInteger> _confirmedPrimes { get; } 
+            = new List<BigInteger>()
             {
                 2
             };
 
-        public long LargestIdentifiedPrime { get; set; }
+        public BigInteger LargestIdentifiedPrime { get; set; }
             = 2;
 
-        public bool IsPrime(long toTest)
+        public bool IsPrime(BigInteger toTest)
         {
             if (toTest < LargestIdentifiedPrime
                 && !_confirmedPrimes.Contains(toTest)) return false;
@@ -31,9 +32,9 @@ namespace ConceptualMath.Numbers.Prime
             return primeFound;
         }
 
-        public long FindNextPrime()
+        public BigInteger FindNextPrime()
         {
-            long primeCandidate = LargestIdentifiedPrime + 1;
+            BigInteger primeCandidate = LargestIdentifiedPrime + 1;
             while(true)
             {
                 if(IsPrime(primeCandidate))

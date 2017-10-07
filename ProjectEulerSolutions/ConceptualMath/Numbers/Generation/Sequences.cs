@@ -1,5 +1,8 @@
-﻿using System;
+﻿using ConceptualMath.Numbers.Prime;
+using ConceptualMath.Sequence;
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Numerics;
 using System.Text;
 
@@ -18,6 +21,17 @@ namespace ConceptualMath.Numbers.Generation
                     yield return (i * j);
                 }
             }
+        }
+
+        public static IEnumerable<BigInteger> NumbersBetween(BigInteger lowInclusive, BigInteger highExclusive)
+            => new NaturalNumbers()
+                .Skip((int)lowInclusive)
+                .Take((int)(highExclusive - lowInclusive))
+                .Select(natural => natural.Value);
+        public static IEnumerable<BigInteger> WherePrime(this IEnumerable<BigInteger> sequence)
+        {
+            var primeService = new PrimeService();
+            return sequence.Where(value => primeService.IsPrime(value));
         }
     }
 }
