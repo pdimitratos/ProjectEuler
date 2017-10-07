@@ -10,8 +10,8 @@ namespace ConceptualMath.Sequence
     public class OrderedEnumerator<TNumber> : IEnumerator<TNumber>
         where TNumber : IForwardOrdered<TNumber>, INumber
     {
-        private TNumber _current;
-        private readonly TNumber _initial;
+        protected TNumber _current;
+        protected readonly TNumber _initial;
 
         public OrderedEnumerator(TNumber initial)
         {
@@ -25,14 +25,18 @@ namespace ConceptualMath.Sequence
         {
             try
             {
-                _current = (_current == null) ? _initial : _current.Next;
-
-                return true;
+                return TryMoveNext();
             }
-            catch(Exception)
+            catch (Exception)
             {
                 return false;
             }
+        }
+
+        protected virtual bool TryMoveNext()
+        {
+            _current = (_current == null) ? _initial : _current.Next;
+            return true;
         }
 
         public void Reset()

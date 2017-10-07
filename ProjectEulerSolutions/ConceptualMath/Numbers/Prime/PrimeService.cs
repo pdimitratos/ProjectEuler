@@ -13,33 +13,35 @@ namespace ConceptualMath.Numbers.Prime
                 2
             };
 
-        private long _largestIdentifiedPrime { get; set; }
+        public long LargestIdentifiedPrime { get; set; }
             = 2;
 
         public bool IsPrime(long toTest)
         {
-            if (toTest < _largestIdentifiedPrime
+            if (toTest < LargestIdentifiedPrime
                 && !_confirmedPrimes.Contains(toTest)) return false;
 
-            while (toTest > (_largestIdentifiedPrime ^ 2))
+            while (toTest > (LargestIdentifiedPrime * LargestIdentifiedPrime))
             {
                 FindNextPrime();
             }
 
-            return _confirmedPrimes.Any(prime => toTest % prime == 0);
+            bool primeFound = !_confirmedPrimes.Any(prime => toTest % prime == 0);
+            if (primeFound) _confirmedPrimes.Add(toTest);
+            return primeFound;
         }
 
-        private void FindNextPrime()
+        public long FindNextPrime()
         {
-            long primeCandidate = _largestIdentifiedPrime + 2;
+            long primeCandidate = LargestIdentifiedPrime + 1;
             while(true)
             {
                 if(IsPrime(primeCandidate))
                 {
-                    _largestIdentifiedPrime = primeCandidate;
-                    return;
+                    LargestIdentifiedPrime = primeCandidate;
+                    return LargestIdentifiedPrime;
                 }
-                primeCandidate = primeCandidate + 2;
+                primeCandidate = primeCandidate + 1;
             }
         }
     }

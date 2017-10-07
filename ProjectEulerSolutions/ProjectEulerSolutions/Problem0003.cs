@@ -1,6 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Numerics;
 using System.Text;
 
@@ -18,12 +19,19 @@ namespace ProjectEulerSolutions
         public void LargestPrimeFactorOf13195_Is29()
         {
             BigInteger toFactor = 13195;
+            var value = toFactor.GetPrimeFactors().Max();
+
+            Assert.AreEqual(29, value);
         }
 
         [TestMethod]
-        public void LargestPrimeFactorOf13195_IsSomething()
+        public void LargestPrimeFactorOf600851475143_Is6857()
         {
             BigInteger toFactor = 600851475143;
+            var value = toFactor.GetPrimeFactors().Max();
+
+            Assert.AreEqual(6857, value);
+     
         }
     }
 }
