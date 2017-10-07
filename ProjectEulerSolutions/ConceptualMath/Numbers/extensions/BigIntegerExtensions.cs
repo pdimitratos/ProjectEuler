@@ -28,8 +28,34 @@ namespace System.Numerics
             }
             factors.Add(workingValue);
             return factors;
-
         }
-       
+
+        public static BigInteger FromDigits(this IEnumerable<BigInteger> digits, int baseToUse=10)
+        {
+            BigInteger placeValue = 1;
+            return digits.Reduce<BigInteger, BigInteger>((sum, digit) =>
+            {
+                var currentValue = digit * placeValue;
+                placeValue = placeValue * baseToUse;
+                return sum + currentValue;
+            });
+        }
+
+        public static IEnumerable<BigInteger> ToDigits(this BigInteger value, int baseToUse=10)
+        {
+            var workingValue = value;
+            while(workingValue > 0)
+            {
+                yield return workingValue % baseToUse;
+                workingValue = workingValue / baseToUse;
+            }
+        }
+
+        public static BigInteger ReverseDigits(this BigInteger input)
+            => input.ToDigits().Reverse().FromDigits();
+
+
+        public static bool IsPalindrome(this BigInteger value)
+            => value == value.ReverseDigits();
     }
 }
