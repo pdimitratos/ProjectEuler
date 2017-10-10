@@ -16,9 +16,8 @@ namespace ConceptualMath.Sequence
         public IEnumerator<TNumber> GetEnumerator() 
             => new OrderedEnumerator<TNumber>(new TNumber());
 
-        public IEnumerable<BigInteger> Values() 
-            => new DelegatedEnumerable<BigInteger>(() => GetEnumerator().Graph((number) => number.Value));
-
+        public IEnumerable<BigInteger> Values()
+            => this.Select(number => number.Value);
         IEnumerator IEnumerable.GetEnumerator() => this.GetEnumerator();
     }
 }

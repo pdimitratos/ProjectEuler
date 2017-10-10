@@ -9,7 +9,7 @@ namespace System.Numerics
     public static class BigIntegerExtensions
     {
         public static BigInteger Sum(this IEnumerable<BigInteger> sequence)
-            => sequence.Reduce<BigInteger, BigInteger>(BigInteger.Add);
+            => sequence.Aggregate(BigInteger.Add);
 
         public static IList<BigInteger> GetPrimeFactors(this BigInteger toFactorize)
         {
@@ -33,7 +33,7 @@ namespace System.Numerics
         public static BigInteger FromDigits(this IEnumerable<BigInteger> digits, int baseToUse=10)
         {
             BigInteger placeValue = 1;
-            return digits.Reduce<BigInteger, BigInteger>((sum, digit) =>
+            return digits.Aggregate(new BigInteger(0), (sum, digit) =>
             {
                 var currentValue = digit * placeValue;
                 placeValue = placeValue * baseToUse;

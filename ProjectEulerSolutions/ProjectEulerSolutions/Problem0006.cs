@@ -55,7 +55,7 @@ namespace ProjectEulerSolutions
         {
             var firstNNaturalNumbers = Sequences.NumbersBetween(1, n + 1).ToList();
 
-            var sumOfSquares = firstNNaturalNumbers.Map((number) => number * number).Sum();
+            var sumOfSquares = firstNNaturalNumbers.Select((number) => number * number).Sum();
             var squareOfSum = BigInteger.Pow(firstNNaturalNumbers.Sum(), 2);
 
             var value = squareOfSum - sumOfSquares;
