@@ -60,5 +60,18 @@ namespace System.Numerics
 
         public static bool IsPalindrome(this BigInteger value)
             => value == value.ReverseDigits();
+
+
+
+        public static BigInteger Square(BigInteger value)
+            => BigInteger.Pow(value, 2);
+
+        public static bool IsPythagoreanTriplet(this Tuple<BigInteger, BigInteger, BigInteger> triplet)
+        {
+            var squares = triplet.Map(Square);
+            bool isTriplet = (squares.Item1 + squares.Item2).Equals(squares.Item3);
+            return isTriplet;
+        }
+                    
     }
 }

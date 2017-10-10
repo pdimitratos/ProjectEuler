@@ -23,5 +23,15 @@ namespace System.Linq
                 }
             }
         }
+
+        public static IEnumerable<Tuple<T1, T2>> ZipToTuple<T1, T2>(
+            this IEnumerable<T1> item1Stream,
+            IEnumerable<T2> item2Stream)
+            => item1Stream.Zip(item2Stream, (item1, item2) => new Tuple<T1, T2>(item1, item2));
+
+        public static IEnumerable<Tuple<T1, T2, T3>> ZipToTuple<T1, T2, T3>(
+            this IEnumerable<Tuple<T1, T2>> tupleStream,
+            IEnumerable<T3> additionalItemStream)
+            => tupleStream.Zip(additionalItemStream, (tuple, newItem) => new Tuple<T1, T2, T3>(tuple.Item1, tuple.Item2, newItem));
     }
 }
