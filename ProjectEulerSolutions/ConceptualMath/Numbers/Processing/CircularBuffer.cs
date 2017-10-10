@@ -10,58 +10,87 @@ namespace ConceptualMath.Numbers.Processing
     public class CircularBuffer<TOut> 
         : ICollection<TOut>, 
         IEnumerable<TOut>
-        where TOut : class
+        where TOut : IEquatable<TOut>, new()
     {
-        private int _size;
+        public bool IsFull => Count == Size;
+        public int Size { get; private set; }
         private readonly TOut[] _backingArray;
-        private int _currentIndex { get; set; }
+        private readonly bool[] _trackingArray;
+        private int _currentIndex;
         public CircularBuffer(int size)
         {
-            _size = size;
+            Size = size;
             _backingArray = new TOut[size];
+            _trackingArray = new bool[size];
             _currentIndex = 0;
         }
         public int Count
-            => _backingArray
-            .Where(item => !(item is null))
+            => _trackingArray
+            .Where(isUsed => isUsed)
             .Count();
 
         public bool IsReadOnly => false;
 
         public void Add(TOut item) 
         {
-            _backingArray[_currentIndex] = item;
-            _currentIndex += 1;
-            _currentIndex = _currentIndex % _size;
+            var indexToInsertAt = _trackingArray
+                .TakeWhile(isUsed => isUsed)
+                .Count();
+
+            if (indexToInsertAt == Size)
+            {
+                InsertAt(_currentIndex, item);
+                _currentIndex += 1;
+            }
+            else
+            {
+                InsertAt(indexToInsertAt, item);
+            }
+            
+            _currentIndex = _currentIndex % Size;
+        }
+
+        private void InsertAt(int index, TOut item)
+        {
+            _backingArray[index] = item;
+            _trackingArray[index] = true;
         }
 
         public void Clear()
         {
-            for (int i = 0; i < _size; i++)
+            for (int i = 0; i < Size; i++)
             {
-                _backingArray[i] = null;
+                _trackingArray[i] = false;
             }
             _currentIndex = 0;
         }
 
         public bool Contains(TOut item)
         {
-            return _backingArray.Any(i => i == item);
+            return _backingArray.Any(i => i.Equals(item));
         }
 
         public void CopyTo(TOut[] array, int arrayIndex)
         {
-            for (int i = 0; i < _size; i++)
+            for (int i = 0; i < Size; i++)
             {
                 array[i + arrayIndex] = _backingArray[i];
             }
         }
 
-        public IEnumerable<TOut> CurrentElements => _backingArray.ToArray().Where(value => !(value is null));
+        public IEnumerable<TOut> CurrentElements()
+        {
+            var backingArraySnapshot = _backingArray.ToList();
+            var trackingArraySnapshot = _trackingArray.ToList();
+            for (int i = 0; i < Size; i++)
+            {
+                if (trackingArraySnapshot[i]) yield return backingArraySnapshot[i];
+            }
+        }
 
         public IEnumerator<TOut> GetEnumerator()
         {
-            foreach (var element in CurrentElements)
+            foreach (var element in CurrentElements())
             {
                 yield return element;
             }
@@ -71,19 +100,20 @@ namespace ConceptualMath.Numbers.Processing
         {
             var indexOfItem = FindIndexOf(item);
 
-            if (indexOfItem < 0) return false;
+            if (indexOfItem < 0 || !_trackingArray[indexOfItem]) return false;
 
-            _backingArray[indexOfItem] = null;
+            _trackingArray[indexOfItem] = false;
             return true;
         }
 
         protected int FindIndexOf(TOut item)
         {
-            for (int i = _currentIndex; i < _size + _currentIndex; i++)
+            for (int i = _currentIndex; i < Size + _currentIndex; i++)
             {
-                if (_backingArray[i % _size] == item)
+                if (_backingArray[i % Size].Equals(item)
+                    && _trackingArray[i % Size])
                 {
-                    return i % _size;
+                    return i % Size;
                 }
             }
             return -1;

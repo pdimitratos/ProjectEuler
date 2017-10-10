@@ -11,6 +11,9 @@ namespace System.Numerics
         public static BigInteger Sum(this IEnumerable<BigInteger> sequence)
             => sequence.Aggregate(BigInteger.Add);
 
+        public static BigInteger Product(this IEnumerable<BigInteger> sequence)
+            => sequence.Aggregate(BigInteger.Multiply);
+
         public static IList<BigInteger> GetPrimeFactors(this BigInteger toFactorize)
         {
             var primeService = new PrimeService();
