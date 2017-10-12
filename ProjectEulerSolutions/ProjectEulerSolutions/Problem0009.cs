@@ -24,27 +24,22 @@ namespace ProjectEulerSolutions
             Find the product abc.
         */
 
-        public static bool Test(Tuple<BigInteger, BigInteger, BigInteger> tuple)
-        {
-            var passesTest = (tuple.Item1 + tuple.Item2 + tuple.Item3).Equals(new BigInteger(1000));
-            return passesTest;
-        }
-
 
         [TestMethod]
-        public void PythagoreanTripletWhereSumOfValuesIs1000_HasProductSomething()
+        public void PythagoreanTripletWhereSumOfValuesIs1000_HasProduct31875000()
         {
             var upperBound = 1000;
+            var sumOfTriplet = new BigInteger(1000);
             var answer = Sequences.NumbersBetween(1, upperBound + 1)
-                .Join<BigInteger, BigInteger, bool, Tuple<BigInteger, BigInteger>>(Sequences.NumbersBetween(1, upperBound + 1), () => true, () => true,(left, right) => new Tuple<BigInteger, BigInteger>(left, right))
-                .ZipToTuple(Sequences.NumbersBetween(1, upperBound + 1))
-                .Where(Problem0009.Test)
+                .FullJoin(Sequences.NumbersBetween(1, upperBound + 1), LinqExtensions.JoinToTuple<BigInteger, BigInteger>())
+                .FullJoin(Sequences.NumbersBetween(1, upperBound + 1), LinqExtensions.JoinToTuple<BigInteger, BigInteger, BigInteger>())
+                .Where((tuple) => (tuple.Item1 + tuple.Item2 + tuple.Item3).Equals(sumOfTriplet))
                 .Where(BigIntegerExtensions.IsPythagoreanTriplet)
                 .Select((tuple) => BigInteger.Multiply(BigInteger.Multiply(tuple.Item1, tuple.Item2), tuple.Item3))
                 .First();
 
 
-            Assert.AreEqual(0, answer);
+            Assert.AreEqual(31875000, answer);
         }
     }
 }
