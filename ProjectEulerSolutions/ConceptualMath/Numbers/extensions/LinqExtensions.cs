@@ -26,8 +26,9 @@ namespace System.Linq
 
         public static IEnumerable<TOut> FullJoin<TIn1, TIn2, TOut>(this IEnumerable<TIn1> stream1, IEnumerable<TIn2> stream2, Func<TIn1, TIn2, TOut> selector)
             => stream1.Join(stream2, (item) => true, (item) => true, (item1, item2) => selector(item1, item2));
-        
-            /*{
+        //Alternative implementation
+        //Todo: test performance
+        /*{
             foreach (var item1 in stream1)
             {
                 foreach(var item2 in stream2)
