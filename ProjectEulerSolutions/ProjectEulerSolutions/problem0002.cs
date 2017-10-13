@@ -1,7 +1,5 @@
-﻿using ConceptualMath.Numbers;
-using ConceptualMath.Sequence;
+﻿using ConceptualMath.Numbers.Generation;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
 using System.Linq;
 using System.Numerics;
 
@@ -28,8 +26,7 @@ namespace ProjectEulerSolutions
                 1, 2, 3, 5, 8, 13, 21, 34, 55, 89
             }.Sum();
 
-            var actual = new FibonacciNumbers()
-                .Values()
+            var actual = Sequences.FibonacciNumbers()
                 .TakeWhile(fib => fib <= 89)
                 .Sum();
 
@@ -39,8 +36,7 @@ namespace ProjectEulerSolutions
         [TestMethod]
         public void SumOfFibonacci_WithEvenValuesLE4Million_Is4613732()
         {
-            var actual = new FibonacciNumbers()
-                .Values()
+            var actual = Sequences.FibonacciNumbers()
                 .TakeWhile(fib => fib <= 4000000)
                 .Where(v => v % 2 == 0)
                 .Sum();

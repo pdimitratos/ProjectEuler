@@ -1,5 +1,4 @@
 ﻿using ConceptualMath.Numbers.Prime;
-using ConceptualMath.Sequence;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -50,6 +49,21 @@ namespace ConceptualMath.Numbers.Generation
             }
         }
 
+        public static IEnumerable<BigInteger> FibonacciNumbers()
+        {
+            BigInteger previous = 1;
+            yield return previous;
+            BigInteger current = 2;
+            yield return current;
+            BigInteger temp;
+            while(true)
+            {
+                temp = previous;
+                previous = current;
+                current = temp + previous;
+                yield return current;
+            }
+        }
         public static IEnumerable<BigInteger> Primes()
         {
             var primeService = new PrimeService();
