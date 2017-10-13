@@ -25,10 +25,30 @@ namespace ConceptualMath.Numbers.Generation
         }
 
         public static IEnumerable<BigInteger> NumbersBetween(BigInteger lowInclusive, BigInteger highExclusive)
-            => new NaturalNumbers()
+            => NaturalNumbers()
                 .Skip((int)lowInclusive)
-                .Take((int)(highExclusive - lowInclusive))
-                .Select(natural => natural.Value);
+                .Take((int)(highExclusive - lowInclusive));
+
+
+        public static IEnumerable<BigInteger> NaturalNumbers()
+        {
+            BigInteger currentNatural = 0;
+            while(true)
+            {
+                yield return currentNatural;
+                currentNatural += 1;
+            }
+        }
+
+        public static IEnumerable<BigInteger> TriangleNumbers()
+        {
+            BigInteger runningTotal = 0;
+            foreach (var number in NaturalNumbers())
+            {
+                runningTotal += number;
+                yield return runningTotal;
+            }
+        }
 
         public static IEnumerable<BigInteger> Primes()
         {

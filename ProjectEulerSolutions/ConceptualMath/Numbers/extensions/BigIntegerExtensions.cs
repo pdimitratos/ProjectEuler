@@ -33,6 +33,27 @@ namespace System.Numerics
             return factors;
         }
 
+        public static IList<BigInteger> GetDivisors(this BigInteger toDivide)
+        {
+            var divisors = new List<BigInteger>() { 1, toDivide };
+
+            var currentCandidate = 2;
+
+            while (currentCandidate * currentCandidate < toDivide)
+            {
+                if (toDivide % currentCandidate == 0)
+                {
+                    divisors.Add(currentCandidate);
+                    divisors.Add(toDivide / currentCandidate);
+                }
+                currentCandidate++;
+            }
+            if (currentCandidate * currentCandidate == toDivide) divisors.Add(currentCandidate);
+
+            return divisors;
+
+        }
+
         public static BigInteger FromDigits(this IEnumerable<BigInteger> digits, int baseToUse=10)
         {
             BigInteger placeValue = 1;

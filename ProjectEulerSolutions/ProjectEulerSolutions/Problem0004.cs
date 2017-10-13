@@ -31,7 +31,7 @@ namespace ProjectEulerSolutions
         [TestMethod]
         public void LargestPalindromeFromTheProductOfTwo3DigitNumbers_Is906609()
         {
-            var value = Sequences.ProductsBetween(100, 1000)
+            var value = Sequences.NumbersBetween(100, 1000)
                 .ToHashSet()
                 .Where(bigInt => bigInt.IsPalindrome())
                 .Max();
