@@ -93,6 +93,17 @@ namespace System.Numerics
             bool isTriplet = (squares.Item1 + squares.Item2).Equals(squares.Item3);
             return isTriplet;
         }
+
+        public static BigInteger Factorial(this BigInteger input)
+        {
+            if (input <= 1) return 1;
+            BigInteger runningProduct = 1;
+            for (int i = 2; i <= input; i++)
+            {
+                runningProduct = runningProduct * i;
+            }
+            return runningProduct;
+        }
                     
     }
 }
