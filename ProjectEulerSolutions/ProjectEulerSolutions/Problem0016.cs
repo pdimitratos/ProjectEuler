@@ -30,7 +30,7 @@ namespace ProjectEulerSolutions
         {
             var answer = BigInteger.Pow(2, 1000).ToDigits().Sum();
 
-            Assert.AreEqual(26, answer);
+            Assert.AreEqual(1366, answer);
         }
     }
 }
