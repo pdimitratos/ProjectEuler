@@ -32,7 +32,7 @@ namespace ConceptualMath.Numbers.Generation
         public static IEnumerable<BigInteger> NaturalNumbers()
         {
             BigInteger currentNatural = 0;
-            while(true)
+            while (true)
             {
                 yield return currentNatural;
                 currentNatural += 1;
@@ -56,7 +56,7 @@ namespace ConceptualMath.Numbers.Generation
             BigInteger current = 2;
             yield return current;
             BigInteger temp;
-            while(true)
+            while (true)
             {
                 temp = previous;
                 previous = current;
@@ -64,6 +64,25 @@ namespace ConceptualMath.Numbers.Generation
                 yield return current;
             }
         }
+
+        private static IEnumerable<BigInteger> iterate(Func<BigInteger, BigInteger> iterativeFunction, BigInteger seedValue)
+        {
+            var workingValue = seedValue;
+            while (true)
+            {
+                yield return workingValue;
+                workingValue = iterativeFunction(workingValue);
+            }
+        }
+
+        public static Func<BigInteger, IEnumerable<BigInteger>> GenerateIteratively(
+                Func<BigInteger, BigInteger> iterativeFunction
+            ) => (BigInteger seedValue) => iterate(iterativeFunction, seedValue);
+
+
+
+
+
         public static IEnumerable<BigInteger> Primes()
         {
             var primeService = new PrimeService();
