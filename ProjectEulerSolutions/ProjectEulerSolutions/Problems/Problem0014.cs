@@ -29,7 +29,7 @@ namespace ProjectEulerSolutions
         */
         static Func<BigInteger, IEnumerable<BigInteger>> IterateFrom
             = Sequences
-                .GenerateIteratively((input) => (input % 2 == 0)
+                .GenerateIteratively<BigInteger>((input) => (input % 2 == 0)
                                     ? BigInteger.Divide(input, 2)
                                     : (BigInteger.Multiply(input, 3) + 1));
 

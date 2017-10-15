@@ -65,7 +65,7 @@ namespace ConceptualMath.Numbers.Generation
             }
         }
 
-        private static IEnumerable<BigInteger> iterate(Func<BigInteger, BigInteger> iterativeFunction, BigInteger seedValue)
+        private static IEnumerable<TOut> Iterate<TOut>(Func<TOut, TOut> iterativeFunction, TOut seedValue)
         {
             var workingValue = seedValue;
             while (true)
@@ -75,11 +75,9 @@ namespace ConceptualMath.Numbers.Generation
             }
         }
 
-        public static Func<BigInteger, IEnumerable<BigInteger>> GenerateIteratively(
-                Func<BigInteger, BigInteger> iterativeFunction
-            ) => (BigInteger seedValue) => iterate(iterativeFunction, seedValue);
-
-
+        public static Func<TOut, IEnumerable<TOut>> GenerateIteratively<TOut>(
+                Func<TOut, TOut> iterativeFunction
+            ) => (TOut seedValue) => Iterate(iterativeFunction, seedValue);
 
 
 
