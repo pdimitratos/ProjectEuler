@@ -272,11 +272,4 @@ namespace System.Numerics
         }
                     
     }
-
-    internal enum WordsCase
-    {
-        hundreds,
-        tens,
-        ones
-    }
 }
