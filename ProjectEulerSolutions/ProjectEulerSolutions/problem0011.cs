@@ -72,6 +72,14 @@ namespace ProjectEulerSolutions
                 checkAnswer();
                 resetCurrentProduct();
             };
+            Func<Func<int, int, int, int>, Action<int, int>> findProduct = (Func<int, int, int, int> getGridValue) => (int i, int j) =>
+            {
+                for (int k = 0; k < 4; k++)
+                {
+                    currentProduct = currentProduct * getGridValue(i, j, k);
+                }
+                reset();
+            };
 
             for (int i = 0; i < arraySize; i++)
             {
@@ -80,43 +88,17 @@ namespace ProjectEulerSolutions
                     bool inHorizontalScope = i < arraySize - 3;
                     bool inVerticalScope = j < arraySize - 3;
                     bool inReverseVerticalScope = j >= 3;
+
                     resetCurrentProduct();
-                    if (inHorizontalScope)
-                    {
-                        for (int k = 0; k < 4; k++)
-                        {
-                            currentProduct = currentProduct * TheGrid[i + k, j];
-                        }
-                        reset();
-                    }
-                    if (inVerticalScope)
-                    {
-                        for (int k = 0; k < 4; k++)
-                        {
-                            currentProduct = currentProduct * TheGrid[i, j + k];
-                        }
-                        reset();
-                    }
-                    if (inHorizontalScope && inVerticalScope)
-                    {
-                        for (int k = 0; k < 4; k++)
-                        {
-                            currentProduct = currentProduct * TheGrid[i + k, j + k];
-                        }
-                        reset();
-                    }
-                    if (inHorizontalScope && inReverseVerticalScope)
-                    {
-                        for (int k = 0; k < 4; k++)
-                        {
-                            currentProduct = currentProduct * TheGrid[i + k, j - k];
-                        }
-                        reset();
-                    }
+
+                    if (inHorizontalScope) findProduct((iLocal, jLocal, kLocal) => TheGrid[iLocal + kLocal, jLocal])(i, j);
+                    if (inVerticalScope) findProduct((iLocal, jLocal, kLocal) => TheGrid[iLocal, jLocal + kLocal])(i, j);
+                    if (inHorizontalScope && inVerticalScope) findProduct((iLocal, jLocal, kLocal) => TheGrid[iLocal + kLocal, jLocal + kLocal])(i, j);
+                    if (inHorizontalScope && inReverseVerticalScope) findProduct((iLocal, jLocal, kLocal) => TheGrid[iLocal + kLocal, jLocal - kLocal])(i, j);
                 }
             }
 
-            Assert.AreEqual(1234, answer);
+            Assert.AreEqual(70600674, answer);
         }
     }
 }

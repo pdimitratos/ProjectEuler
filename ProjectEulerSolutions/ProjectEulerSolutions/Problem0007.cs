@@ -1,13 +1,7 @@
-﻿using ConceptualMath.Conditionals;
-using ConceptualMath.Numbers;
-using ConceptualMath.Numbers.Generation;
-using ConceptualMath.Sequence;
+﻿using ConceptualMath.Numbers.Generation;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Numerics;
-using System.Text;
 
 namespace ProjectEulerSolutions
 {
@@ -44,11 +38,9 @@ namespace ProjectEulerSolutions
 
         private static BigInteger nthPrime(int n)
         {
-            return new NaturalNumbers()
-                                    .Values()
-                                    .WherePrime()
-                                    .Skip(n - 1)
-                                    .First();
+            return Sequences.Primes()
+                            .Skip(n - 1)
+                            .First();
         }
     }
 }

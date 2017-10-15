@@ -1,4 +1,4 @@
-using ConceptualMath.Sequence;
+using ConceptualMath.Numbers.Generation;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Linq;
@@ -38,8 +38,7 @@ namespace ProjectEulerSolutions
         {
             if (below < 1) throw new ArgumentException("must be 1 or greater", nameof(below));
 
-            return new NaturalNumbers()
-                .Values()
+            return Sequences.NaturalNumbers()
                 .Take(below)
                 .Where(v => v % 3 == 0 || v % 5 == 0)
                 .Sum();

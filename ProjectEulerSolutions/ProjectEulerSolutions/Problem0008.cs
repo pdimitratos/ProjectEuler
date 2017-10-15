@@ -1,13 +1,8 @@
-﻿using ConceptualMath.Conditionals;
-using ConceptualMath.Numbers;
-using ConceptualMath.Numbers.Generation;
-using ConceptualMath.Sequence;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Numerics;
-using System.Text;
 
 namespace ProjectEulerSolutions
 {
