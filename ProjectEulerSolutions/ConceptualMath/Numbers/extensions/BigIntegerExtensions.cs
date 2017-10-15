@@ -9,7 +9,7 @@ namespace System.Numerics
     public static class BigIntegerExtensions
     {
         public static BigInteger Sum(this IEnumerable<BigInteger> sequence)
-            => sequence.Aggregate(BigInteger.Add);
+            => sequence.Any() ? sequence.Aggregate(BigInteger.Add) : 0;
 
         public static BigInteger Product(this IEnumerable<BigInteger> sequence)
             => sequence.Aggregate(BigInteger.Multiply);
@@ -20,9 +20,9 @@ namespace System.Numerics
             var factors = new List<BigInteger>();
             var workingValue = toFactorize;
 
-            while(primeService.LargestIdentifiedPrime * primeService.LargestIdentifiedPrime < workingValue)
+            while (primeService.LargestIdentifiedPrime * primeService.LargestIdentifiedPrime < workingValue)
             {
-                while(workingValue % primeService.LargestIdentifiedPrime == 0)
+                while (workingValue % primeService.LargestIdentifiedPrime == 0)
                 {
                     workingValue = workingValue / primeService.LargestIdentifiedPrime;
                     factors.Add(primeService.LargestIdentifiedPrime);
@@ -54,7 +54,7 @@ namespace System.Numerics
 
         }
 
-        public static BigInteger FromDigits(this IEnumerable<BigInteger> digits, int baseToUse=10)
+        public static BigInteger FromDigits(this IEnumerable<BigInteger> digits, int baseToUse = 10)
         {
             BigInteger placeValue = 1;
             return digits.Aggregate(new BigInteger(0), (sum, digit) =>
@@ -65,10 +65,10 @@ namespace System.Numerics
             });
         }
 
-        public static IEnumerable<BigInteger> ToDigits(this BigInteger value, int baseToUse=10)
+        public static IEnumerable<BigInteger> ToDigits(this BigInteger value, int baseToUse = 10)
         {
             var workingValue = value;
-            while(workingValue > 0)
+            while (workingValue > 0)
             {
                 yield return workingValue % baseToUse;
                 workingValue = workingValue / baseToUse;
@@ -104,6 +104,17 @@ namespace System.Numerics
             }
             return runningProduct;
         }
+
+        public static bool IsAmicable(this BigInteger input)
+            => input != input.SumOfProperDivisors()
+            && input == input
+                        .SumOfProperDivisors()
+                        .SumOfProperDivisors();
+
+        private static BigInteger SumOfProperDivisors(this BigInteger input) => input
+            .GetDivisors()
+            .Where(factor => factor < input)
+            .Sum();
 
         /// <summary>
         /// Writes the given number in words. Currently only valid between 1 and 1000 (inclusive)
@@ -270,6 +281,6 @@ namespace System.Numerics
             }
             return words.ToString();
         }
-                    
+
     }
 }
