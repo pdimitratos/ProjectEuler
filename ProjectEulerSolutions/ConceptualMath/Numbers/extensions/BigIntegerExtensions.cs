@@ -111,6 +111,9 @@ namespace System.Numerics
                         .SumOfProperDivisors()
                         .SumOfProperDivisors();
 
+        public static bool IsAbundant(this BigInteger input)
+            => input.SumOfProperDivisors() > input;
+
         private static BigInteger SumOfProperDivisors(this BigInteger input) => input
             .GetDivisors()
             .Where(factor => factor < input)
