@@ -28,7 +28,7 @@ namespace ProjectEulerSolutions
                 .FullJoin(Sequences.NumbersBetween(1, upperBound + 1), LinqExtensions.JoinToTuple<BigInteger, BigInteger>())
                 .FullJoin(Sequences.NumbersBetween(1, upperBound + 1), LinqExtensions.JoinToTuple<BigInteger, BigInteger, BigInteger>())
                 .Where((tuple) => (tuple.Item1 + tuple.Item2 + tuple.Item3).Equals(sumOfTriplet))
-                .Where(BigIntegerExtensions.IsPythagoreanTriplet)
+                .Where(Conditional.IsPythagoreanTriplet)
                 .Select((tuple) => BigInteger.Multiply(BigInteger.Multiply(tuple.Item1, tuple.Item2), tuple.Item3))
                 .First();
 

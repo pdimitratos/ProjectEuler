@@ -1,7 +1,7 @@
-﻿using ConceptualMath.Conditionals;
-using ConceptualMath.Numbers.Generation;
+﻿using ConceptualMath.Numbers.Generation;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Linq;
+using System.Numerics;
 
 namespace ProjectEulerSolutions
 {

@@ -90,18 +90,6 @@ namespace ConceptualMath.Numbers.Generation
                 yield return prime;
             }
         }
-
-        public static IEnumerable<BigInteger> WherePrime(this IEnumerable<BigInteger> sequence)
-        {
-            var primeService = new PrimeService();
-            var enumerator = sequence.GetEnumerator();
-            while (enumerator.MoveNext())
-            {
-                if (primeService.IsPrime(enumerator.Current))
-                {
-                    yield return enumerator.Current;
-                }
-            }
-        }
     }
 }
+

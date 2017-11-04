@@ -1,10 +1,6 @@
-﻿using ConceptualMath.Combinatorics;
-using ConceptualMath.Numbers.Generation;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
 using System.Linq;
-using System.Numerics;
 
 
 namespace ProjectEulerSolutions
