@@ -90,6 +90,14 @@ namespace ConceptualMath.Numbers.Generation
                 yield return prime;
             }
         }
+
+        public static IEnumerable<T> Repeat<T>(T input)
+        {
+            while (true)
+            {
+                yield return input;
+            }
+        }
     }
 }
 
