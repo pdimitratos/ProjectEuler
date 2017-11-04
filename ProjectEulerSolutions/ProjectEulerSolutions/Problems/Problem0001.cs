@@ -1,6 +1,8 @@
 using ConceptualMath.Numbers.Generation;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using System.Numerics;
 
@@ -43,5 +45,6 @@ namespace ProjectEulerSolutions
                 .Where(v => v % 3 == 0 || v % 5 == 0)
                 .Sum();
         }
+      
     }
 }

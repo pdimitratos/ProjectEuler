@@ -34,8 +34,7 @@ namespace ConceptualMath.Numbers.Generation
             BigInteger currentNatural = 0;
             while (true)
             {
-                yield return currentNatural;
-                currentNatural += 1;
+                yield return currentNatural++;
             }
         }
 
