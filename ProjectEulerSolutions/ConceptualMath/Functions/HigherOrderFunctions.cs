@@ -15,5 +15,14 @@ namespace System.Linq
             }
             return temp;
         }
+
+        public static IEnumerable<T> Map<T>(this IEnumerable<T> input, Action<T> function)
+        {
+            foreach (var item in input)
+            {
+                function(item);
+                yield return item;
+            }
+        }
     }
 }
