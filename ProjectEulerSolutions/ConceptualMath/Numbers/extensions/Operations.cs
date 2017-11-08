@@ -48,5 +48,8 @@ namespace System.Numerics
                 .FirstOrDefault();                
             return digits.Count - repeatStartIndex - 1;
         }
+
+        public static Func<BigInteger, BigInteger> QuadraticFunction(BigInteger a, BigInteger b)
+            => (n) => BigInteger.Pow(n, 2) + (a * n) + b;
     }
 }
