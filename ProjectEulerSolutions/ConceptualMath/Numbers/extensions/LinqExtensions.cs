@@ -38,6 +38,7 @@ namespace System.Linq
             }
         }*/
 
+
         public static IEnumerable<TOut> Difference<TOut>(this IEnumerable<TOut> stream1, IEnumerable<TOut> stream2)
             => stream1.Complement(stream2)
                     .Union(stream2.Complement(stream1));

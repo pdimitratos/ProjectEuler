@@ -16,12 +16,21 @@ namespace System.Linq
             return temp;
         }
 
-        public static IEnumerable<T> Map<T>(this IEnumerable<T> input, Action<T> function)
+        public static T ApplyWhile<T>(this T input, Func<T, T> function, Func<T, bool> continueApply)
+        {
+            var temp = input;
+            while(continueApply(temp))
+            {
+                temp = function(temp);
+            }
+            return temp;
+        }
+
+        public static void Map<T>(this IEnumerable<T> input, Action<T> function)
         {
             foreach (var item in input)
             {
                 function(item);
-                yield return item;
             }
         }
     }
