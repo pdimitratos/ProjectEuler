@@ -39,7 +39,7 @@ namespace ProjectEulerSolutions
         }
 
         [TestMethod]
-        public void NumberOfWaysToMake200pChange_IsSomething()
+        public void NumberOfWaysToMake200pChange_Is73682()
         {
             var n = 200;
             var answer = Problem31(n);
