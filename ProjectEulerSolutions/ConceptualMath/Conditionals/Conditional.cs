@@ -1,4 +1,5 @@
 ﻿using ConceptualMath.Numbers;
+using ConceptualMath.Numbers.Generation;
 using ConceptualMath.Numbers.Prime;
 using System;
 using System.Collections.Generic;
@@ -31,6 +32,32 @@ namespace System.Numerics
 
         public static bool IsPalindrome(this BigInteger value)
             => value == value.ReverseDigits();
+
+        public static bool IsPandigitalSet(this IEnumerable<BigInteger> set, long startDigit = 1, long endDigit = 9)
+            => set
+                .SelectMany(term => term.ToDigits())
+                .Count() == endDigit - startDigit + 1
+            && set
+                .SelectMany(term => term.ToDigits())
+                .GroupBy(term => term)
+                .Where(group => group.Count() == 1)
+                .Join(
+                    Sequences.NumbersBetween(startDigit, endDigit + 1),
+                    group => group.Key,
+                    digit => digit,
+                    (group, digit) => digit
+                ).Count() == endDigit - startDigit + 1;
+
+        public static bool HasRepeatedDigits(this IEnumerable<BigInteger> set)
+            => set
+                .SelectMany(term => term.ToDigits())
+                .GroupBy(term => term)
+                .Any(group => group.Count() > 1);
+        public static bool HasRepeatedDigits(this BigInteger num)
+            => num
+                .ToDigits()
+                .GroupBy(term => term)
+                .Any(group => group.Count() > 1);
 
         public static IEnumerable<BigInteger> WherePrime(this IEnumerable<BigInteger> sequence)
         {

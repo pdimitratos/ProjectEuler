@@ -26,7 +26,7 @@ namespace System.Linq
             return temp;
         }
 
-        public static void Map<T>(this IEnumerable<T> input, Action<T> function)
+        public static void ForEach<T>(this IEnumerable<T> input, Action<T> function)
         {
             foreach (var item in input)
             {

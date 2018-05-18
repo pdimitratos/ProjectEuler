@@ -24,7 +24,11 @@ namespace System.Linq
             }
         }
 
-        public static IEnumerable<TOut> FullJoin<TIn1, TIn2, TOut>(this IEnumerable<TIn1> stream1, IEnumerable<TIn2> stream2, Func<TIn1, TIn2, TOut> selector)
+        public static IEnumerable<TOut> FullJoin<TIn1, TIn2, TOut>(
+            this IEnumerable<TIn1> stream1,
+            IEnumerable<TIn2> stream2,
+            Func<TIn1, TIn2, TOut> selector
+        )
             => stream1.Join(stream2, (item) => true, (item) => true, (item1, item2) => selector(item1, item2));
         //Alternative implementation
         //Todo: test performance
@@ -38,6 +42,17 @@ namespace System.Linq
             }
         }*/
 
+        public static IEnumerable<TOut> FullJoinWhere<TIn1, TIn2, TOut>(
+            this IEnumerable<TIn1> stream1,
+            IEnumerable<TIn2> stream2,
+            Func<TIn1, TIn2, bool> condition,
+            Func<TIn1, TIn2, TOut> selector)
+        {
+            foreach (var item1 in stream1)
+            foreach (var item2 in stream2)
+            if (condition(item1, item2))
+                yield return selector(item1, item2);
+        }
 
         public static IEnumerable<TOut> Difference<TOut>(this IEnumerable<TOut> stream1, IEnumerable<TOut> stream2)
             => stream1.Complement(stream2)

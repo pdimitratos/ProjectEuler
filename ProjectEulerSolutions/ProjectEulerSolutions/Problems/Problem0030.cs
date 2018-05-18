@@ -53,7 +53,7 @@ namespace ProjectEulerSolutions
         }
 
         [TestMethod]
-        public void SumOfNumbersThatCanBeWrittenAsTheSumOf5thPowersOfTheirDigits_IssOMETHING()
+        public void SumOfNumbersThatCanBeWrittenAsTheSumOf5thPowersOfTheirDigits_Is443839()
         {
             var n = 5;
             var maxToEval = BigInteger.Pow(10, n + 1);
@@ -67,7 +67,7 @@ namespace ProjectEulerSolutions
                 .Select(test => test.value)
                 .Sum();
 
-            Assert.AreEqual(19316, result);
+            Assert.AreEqual(443839, result);
         }
     }
 }

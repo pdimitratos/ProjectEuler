@@ -72,7 +72,7 @@ namespace ProjectEulerSolutions
                                 .Select(coin => ((value: coin, count: coinList.Where(x => x == coin).Count())))
                                 .OrderBy(t => t.value)
                                 .ToList()
-                            ).Map(addUniquesToResults);
+                            ).ForEach(addUniquesToResults);
                         return coinBags
                             .Where(coinBag => coinBag.currentValue < n)
                             .Select(coinBag => (coinBag: coinBag, coinsToAdd: _coins().Where(coin => coin >= coinBag.mostRecent && (coinBag.currentValue + coin) <= n)))

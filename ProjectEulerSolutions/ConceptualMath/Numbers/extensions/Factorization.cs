@@ -8,9 +8,10 @@ namespace System.Numerics
 {
     public static class Factorization
     {
-        public static IList<BigInteger> GetDivisors(this BigInteger toDivide)
+        public static IEnumerable<BigInteger> GetDivisors(this BigInteger toDivide)
         {
-            var divisors = new List<BigInteger>() { 1, toDivide };
+            yield return 1;
+            yield return toDivide;
 
             var currentCandidate = 2;
 
@@ -18,14 +19,12 @@ namespace System.Numerics
             {
                 if (toDivide % currentCandidate == 0)
                 {
-                    divisors.Add(currentCandidate);
-                    divisors.Add(toDivide / currentCandidate);
+                    yield return currentCandidate;
+                    yield return toDivide / currentCandidate;
                 }
                 currentCandidate++;
             }
-            if (currentCandidate * currentCandidate == toDivide) divisors.Add(currentCandidate);
-
-            return divisors;
+            if (currentCandidate * currentCandidate == toDivide) yield return currentCandidate;
         }
 
         public static IList<BigInteger> GetPrimeFactors(this BigInteger toFactorize)

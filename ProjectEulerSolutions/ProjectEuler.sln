@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26730.15
+VisualStudioVersion = 15.0.27130.2010
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjectEulerSolutions", "ProjectEulerSolutions\ProjectEulerSolutions.csproj", "{0A144035-33C7-4D2B-A1F0-D74F676AFCD0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProjectEulerSolutions", "ProjectEulerSolutions\ProjectEulerSolutions.csproj", "{0A144035-33C7-4D2B-A1F0-D74F676AFCD0}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{511FEDE8-D73E-4BFA-8F8D-0CF8D5EDDCDA}"
 EndProject
@@ -17,7 +17,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{19DDF55E-C527-4CF6-9F19-24670B39FF12}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConceptualMath", "ConceptualMath\ConceptualMath.csproj", "{7F809D76-DD1B-48F1-A6BD-F8E1282074BC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConceptualMath", "ConceptualMath\ConceptualMath.csproj", "{7F809D76-DD1B-48F1-A6BD-F8E1282074BC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
