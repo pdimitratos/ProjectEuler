@@ -27,9 +27,9 @@ namespace System.Numerics
             if (currentCandidate * currentCandidate == toDivide) yield return currentCandidate;
         }
 
-        public static IList<BigInteger> GetPrimeFactors(this BigInteger toFactorize)
+        public static IList<BigInteger> GetPrimeFactors(this BigInteger toFactorize, PrimeService reusedPrimeService = null)
         {
-            var primeService = new PrimeService();
+            var primeService = reusedPrimeService ?? new PrimeService();
             var factors = new List<BigInteger>();
             var workingValue = toFactorize;
 
@@ -51,5 +51,26 @@ namespace System.Numerics
             .GetDivisors()
             .Where(factor => factor < input)
             .Sum();
+
+        public static BigInteger GreatestCommonDenominator(this BigInteger a, BigInteger b)
+        {
+            var currentGreater = a > b ? a : b;
+            var currentLesser = a > b ? b : a;
+            while(true)
+            {
+                if (currentGreater == currentLesser)
+                    return currentLesser;
+                var difference = currentGreater - currentLesser;
+                if(difference > currentLesser)
+                {
+                    currentGreater = difference;
+                }
+                else
+                {
+                    currentGreater = currentLesser;
+                    currentLesser = difference;
+                }
+            }
+        }
     }
 }
