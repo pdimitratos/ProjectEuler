@@ -19,17 +19,12 @@ namespace ConceptualMath.Numbers.Prime
 
         public bool IsPrime(BigInteger toTest)
         {
-            if (_confirmedPrimes.Contains(toTest)) return true;
-            if (toTest < LargestIdentifiedPrime) return false;
-
             while (toTest > (LargestIdentifiedPrime * LargestIdentifiedPrime))
             {
                 FindNextPrime();
             }
 
-            bool primeFound = !_confirmedPrimes.Any(prime => toTest % prime == 0);
-            if (primeFound) _confirmedPrimes.Add(toTest);
-            return primeFound;
+            return _confirmedPrimes.BinarySearch(toTest) >= 0;
         }
 
         public BigInteger FindNextPrime()
@@ -37,8 +32,10 @@ namespace ConceptualMath.Numbers.Prime
             BigInteger primeCandidate = LargestIdentifiedPrime + 1;
             while(true)
             {
-                if(IsPrime(primeCandidate))
+                bool primeFound = !_confirmedPrimes.Any(prime => primeCandidate % prime == 0);
+                if (primeFound)
                 {
+                    _confirmedPrimes.Add(primeCandidate);
                     LargestIdentifiedPrime = primeCandidate;
                     return LargestIdentifiedPrime;
                 }

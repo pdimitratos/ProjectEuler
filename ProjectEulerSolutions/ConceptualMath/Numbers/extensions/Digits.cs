@@ -32,7 +32,19 @@ namespace System.Numerics
         public static BigInteger ReverseDigits(this BigInteger input)
             => input.ToDigits().Reverse().FromDigits();
 
+        public static IEnumerable<BigInteger> ToDigitRotations(this BigInteger input)
+        {
+            var digits = input.ToDigits().ToList();
 
+            var result = digits
+                .Concat(digits);
+            
+            var movingWindow = result
+                .ToMovingWindow(digits.Count);
+
+            return movingWindow
+                .Select(rotation => rotation.FromDigits());
+        }
 
     }
 }
