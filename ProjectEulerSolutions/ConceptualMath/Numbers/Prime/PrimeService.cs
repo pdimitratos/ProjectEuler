@@ -19,7 +19,7 @@ namespace ConceptualMath.Numbers.Prime
 
         public bool IsPrime(BigInteger toTest)
         {
-            while (toTest > (LargestIdentifiedPrime * LargestIdentifiedPrime))
+            while (toTest > LargestIdentifiedPrime)
             {
                 FindNextPrime();
             }

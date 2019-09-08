@@ -40,7 +40,8 @@ namespace System.Numerics
                 .Concat(digits);
             
             var movingWindow = result
-                .ToMovingWindow(digits.Count);
+                .ToMovingWindow(digits.Count)
+                .Take(digits.Count);
 
             return movingWindow
                 .Select(rotation => rotation.FromDigits());

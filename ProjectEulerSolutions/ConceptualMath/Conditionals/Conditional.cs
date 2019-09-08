@@ -72,12 +72,11 @@ namespace System.Numerics
             }
         }
 
-        public static bool AllPrime(this IEnumerable<BigInteger> sequence)
-        {
-            var primeService = new PrimeService();
+        public static bool AllPrime(
+            this IEnumerable<BigInteger> sequence,
+            PrimeService primeService)
+        => sequence
+            .All(value => primeService.IsPrime(value));
 
-            return sequence
-                .All(value => primeService.IsPrime(value));
-        }
     }
 }

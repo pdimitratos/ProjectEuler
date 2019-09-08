@@ -33,20 +33,8 @@ namespace ConceptualMath.Numbers.Processing
 
         public void Add(TOut item) 
         {
-            var indexToInsertAt = _trackingArray
-                .TakeWhile(isUsed => isUsed)
-                .Count();
-
-            if (indexToInsertAt == Size)
-            {
-                InsertAt(_currentIndex, item);
-                _currentIndex += 1;
-            }
-            else
-            {
-                InsertAt(indexToInsertAt, item);
-            }
-            
+            InsertAt(_currentIndex, item);
+            _currentIndex += 1;
             _currentIndex = _currentIndex % Size;
         }
 
@@ -84,7 +72,11 @@ namespace ConceptualMath.Numbers.Processing
             var trackingArraySnapshot = _trackingArray.ToList();
             for (int i = 0; i < Size; i++)
             {
-                if (trackingArraySnapshot[i]) yield return backingArraySnapshot[i];
+                int rotatedIndex = (_currentIndex + i) % Size;
+                if (trackingArraySnapshot[rotatedIndex])
+                {
+                    yield return backingArraySnapshot[rotatedIndex];
+                }
             }
         }
 
