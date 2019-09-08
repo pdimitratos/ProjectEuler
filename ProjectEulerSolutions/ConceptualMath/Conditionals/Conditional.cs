@@ -30,8 +30,8 @@ namespace System.Numerics
             return isTriplet;
         }
 
-        public static bool IsPalindrome(this BigInteger value)
-            => value == value.ReverseDigits();
+        public static bool IsPalindrome(this BigInteger value, int baseToUse = 10)
+            => value == value.ReverseDigits(baseToUse);
 
         public static bool IsPandigitalSet(this IEnumerable<BigInteger> set, long startDigit = 1, long endDigit = 9)
             => set

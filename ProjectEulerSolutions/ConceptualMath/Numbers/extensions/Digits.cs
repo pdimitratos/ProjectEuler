@@ -29,8 +29,8 @@ namespace System.Numerics
             }
         }
 
-        public static BigInteger ReverseDigits(this BigInteger input)
-            => input.ToDigits().Reverse().FromDigits();
+        public static BigInteger ReverseDigits(this BigInteger input, int baseToUse = 10)
+            => input.ToDigits(baseToUse).Reverse().FromDigits(baseToUse);
 
         public static IEnumerable<BigInteger> ToDigitRotations(this BigInteger input)
         {
