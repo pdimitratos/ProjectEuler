@@ -80,9 +80,9 @@ namespace ConceptualMath.Numbers.Generation
 
 
 
-        public static IEnumerable<BigInteger> Primes()
+        public static IEnumerable<BigInteger> Primes(PrimeService primeService = null)
         {
-            var primeService = new PrimeService();
+            primeService = primeService ?? new PrimeService();
             yield return primeService.LargestIdentifiedPrime;
             while (true)
             {

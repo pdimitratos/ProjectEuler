@@ -33,5 +33,17 @@ namespace System.Linq
                 function(item);
             }
         }
+
+        public static bool All<T>(this T[] input, Func<(T[] input, int index), bool> statefulPredicate)
+        {
+            for (int i = 0; i < input.Length; i++)
+            {
+                if (!statefulPredicate((input, i)))
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
     }
 }

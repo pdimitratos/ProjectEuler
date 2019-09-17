@@ -6,6 +6,11 @@ using System.Text;
 
 namespace ConceptualMath.Numbers.Prime
 {
+    public static class PrimeExtensions
+    {
+        public static bool IsPrime(this BigInteger input, PrimeService primeService)
+            => primeService.IsPrime(input);
+    }
     public class PrimeService
     {
         private List<BigInteger> _confirmedPrimes { get; } 
